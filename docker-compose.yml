@@ -3,7 +3,10 @@ services:
   samba:
     build: .
     ports:
-      - "137-139:137-139"
+      - "135:135"
+      - "137:137"
+      - "138:138"
+      - "139:139"
       - "445:445"
     volumes:
       - persist-share:/samba/public
