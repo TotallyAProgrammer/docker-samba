@@ -1,0 +1,12 @@
+version: '3'
+services:
+  samba:
+    build: .
+    ports:
+      - "137-139:137-139"
+      - "445:445"
+    volumes:
+      - persist-share:/samba/public
+
+volumes: 
+  persist-share:
