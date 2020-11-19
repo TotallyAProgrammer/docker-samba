@@ -1,7 +1,11 @@
 FROM ubuntu:20.04
 
+LABEL descrption="A some what simple Samba container with complete public access to a shared folder." version="1.0" maintainer="Zane Reick (zane.reick@unknownts.tk)"
+
 RUN apt update -y
-RUN apt install samba -y
+RUN apt install samba supervisor -y
+
+RUN rm -f /etc/samba/smb.conf
 
 COPY smb.conf /etc/samba/smb.conf
 
@@ -16,4 +20,4 @@ EXPOSE 139
 EXPOSE 445
 
 
-CMD [ "service", "smbd", "restart"]
+CMD [ "smbd", "--foreground", "--configfile=/etc/samba/smb.conf" ]
